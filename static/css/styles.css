@@ -2,14 +2,26 @@
     --accent: #00b386;
 }
 
-.seatsMain{
+main{
     background-color: #b3b3b3;
+    height: 100vh;
 }
 
 .uitooltip  {
     white-space: pre-line;
 }
-
+.text-white{
+    color:white;
+}
+.p-2{
+    padding: 20px
+}
+.p-3{
+    padding: 10px
+}
+.mt-2{
+    margin-top: 20px;
+}
 .bg-accent{
     background-color: var(--accent);
 }
@@ -140,4 +152,10 @@
     border: 1px solid black;
     padding: 40px;
     font-size: 2em;
+}
+
+
+/*trip*/
+.trip .card-body{
+    padding: 20px;
 }

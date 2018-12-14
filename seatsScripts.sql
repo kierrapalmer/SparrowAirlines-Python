@@ -1,6 +1,5 @@
 
 create table seat(id int primary key, aisle varchar(2), row int, isOpen int, seatClass varchar(30), price float);
-insert into seat values(1, 'A', 1, 1, 'First', '382.19'), (2, 'B', 1, 1, 'First', '382.19');
 insert into seat(aisle, row, isOpen, seatClass, price)
 VALUES
 (1 ,'A', 1, 1, 'First', '421.19'),
@@ -43,5 +42,12 @@ VALUES
 (38 ,'B', 10, '1', 'Economy', '318.58'),
 (39, 'C', 10, '1', 'Economy', '318.58'),
 (40, 'D', 10, '1', 'Economy', '318.58');
+
+
+
+create table user(id int primary key, email varchar(50), password varchar(50), name varchar(50))
+insert into user values(1, 'admin@admin.com', 'admin', 'Admin Adam'),
+(2, 'test@test.com', 'test', 'Testy McTesterson');
+
 
 

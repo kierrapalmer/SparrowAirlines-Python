@@ -1,7 +1,9 @@
 from flask import Flask, render_template, g, request, redirect, url_for
 import sqlite3
-import datetime
+import random
 from flask_bootstrap import Bootstrap
+from flask import make_response
+
 
 
 PATH= 'seats.db'
@@ -52,6 +54,55 @@ def seats(action='', seat_id=0):
 
     seats = execute_sql('SELECT * FROM seat ORDER BY row, aisle')
     return render_template("seats.html", seats=seats)
+
+
+@app.route("/register", methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        password = request.form['password']
+        userid = random.randint(1, 500)
+        usersids = execute_sql('SELECT id FROM user')
+
+        while userid in usersids:
+            userid = random.randint(1, 500)
+
+        execute_sql('insert into user values(?, ?, ?, ?)', (userid, email, password, name), commit=True)
+        resp = make_response(redirect('/'))
+        resp.set_cookie('userid', str(userid))
+        return resp
+
+    return render_template("register.html")
+
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    users = execute_sql('SELECT * FROM user')
+
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        for user in users:
+            if user['email'] == email and user['password'] == password:
+                resp = make_response(redirect('/'))
+                resp.set_cookie('userid', str(user['id']))
+                return resp
+
+    return render_template("login.html")
+
+
+@app.route("/logout", methods=['GET', 'POST'])
+def logout():
+    resp = make_response(redirect(url_for("login")))
+    resp.set_cookie('userid', '0')
+    return resp
+
+
+@app.route("/trip", methods=['GET'])
+def trip():
+    seats = execute_sql('SELECT * FROM seat ORDER BY row, aisle')
+    return render_template("trip.html", seats=seats)
 
 
 if __name__ == "__main__":
