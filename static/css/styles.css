@@ -1,0 +1,143 @@
+:root{
+    --accent: #00b386;
+}
+
+.seatsMain{
+    background-color: #b3b3b3;
+}
+
+.uitooltip  {
+    white-space: pre-line;
+}
+
+.bg-accent{
+    background-color: var(--accent);
+}
+
+.btn-accent{
+    background-color: var(--accent);
+    color: white;
+}
+.btn-accent:hover{
+    color: black;
+}
+.btn-outline-light{
+    border: 1px solid white;
+    padding: 10px;
+    color: white;
+}
+
+.btn-outline-light:hover{
+    color: white;
+    font-weight: bold;
+}
+
+
+.navbar{
+    z-index: 1;
+    margin-bottom: 0;
+}
+.cover{
+    background-size: cover;
+    width: 100% !important;
+}
+.cover-text{
+    position: absolute;
+    top: 30%;
+    color: white;
+    font-weight: bolder;
+    padding-left: 30px
+}
+.cover-text h1{
+    font-size: 3em;
+    text-transform: uppercase;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+.main{
+    position: absolute;
+    top: 0;
+    z-index: 0;
+}
+
+
+/*seat*/
+.seats .row{
+    margin: 0 !important;
+}
+.plane p{
+    padding-left: 20px;
+    font-weight: bold;
+}
+.seats .seatSelector{
+    padding: 20px;
+}
+.seats h3{
+    margin: 3px 0;
+}
+
+.plane{
+    border: 1px solid black;
+    padding-left: -10px;
+}
+.card-body{
+    background-color: white;
+}
+.custom-column-md{
+    flex: 0 0 11%;
+    max-width: 11%;
+    font-size: 80%;
+}
+
+.custom-column-sm{
+    flex: 0 0 8%;
+    max-width: 8%;
+}
+.First .seat, .aisle{
+    width: 50px;
+    height: 50px;
+    margin: 10px 0;
+}
+.Business .seat{
+    width: 50px;
+    height: 40px;
+    margin: 7px 0;
+}
+.Economy .seat{
+    width: 50px;
+    height: 30px;
+    margin: 5px 0;
+}
+
+
+
+.occupied{
+    background-color: grey;
+    color: white;
+}
+
+.open{
+    background-color: var(--accent);
+}
+.open a, .occupied a{
+    color: white;
+}
+.seats{
+    margin-left: 0;
+}
+
+.seatTable{
+    width: 70%;
+    border: 1px solid black;
+}
+.seatTable tr{
+        border-bottom: 1px solid black;
+}
+.seatTable td{
+        padding: 10px;
+}
+
+.box{
+    border: 1px solid black;
+    padding: 40px;
+    font-size: 2em;
+}

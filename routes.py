@@ -3,17 +3,19 @@ import sqlite3
 import datetime
 from flask_bootstrap import Bootstrap
 
+
 PATH= 'seats.db'
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
+
 
 def open_connection():
     connection = getattr(g, '_connection', None)
     if connection is None:
         connection = g._connection = sqlite3.connect(PATH)
         connection.row_factory = sqlite3.Row
-        return connection
+    return connection
 
 
 def execute_sql(sql, values=(), commit=False, single=False):
@@ -40,9 +42,15 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/seats", methods=['GET', 'POST'])
-def seats():
-    seats = execute_sql('SELECT * FROM seat')
+@app.route("/seats")
+@app.route("/seats/<action>/<seat_id>")
+def seats(action='', seat_id=0):
+    if action == 'assign':
+        execute_sql('UPDATE seat SET isOpen = 0 WHERE id = (?)', (seat_id,), commit=True)
+    if action == 'unassign':
+        execute_sql('UPDATE seat SET isOpen = 1 WHERE id = (?)', (seat_id,), commit=True)
+
+    seats = execute_sql('SELECT * FROM seat ORDER BY row, aisle')
     return render_template("seats.html", seats=seats)
 
 

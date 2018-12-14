@@ -1,0 +1,58 @@
+{% macro displaySeat(seat) %}
+
+    {% if(seat['isOpen'] == 0) %}
+            <a class="tool" title=" {{ seat['seatClass'] }} Class
+Seat Number: {{ seat['aisle'] }}{{ seat['row'] }}
+${{ seat['price'] }}"
+               href="{{ url_for('seats', action= 'unassign', seat_id=seat['id']) }}">
+                <div class="seat occupied"></div>            </a>
+    {% else %}
+
+            <a class="tool" title=" {{ seat['seatClass'] }} Class
+Seat Number: {{ seat['aisle'] }}{{ seat['row'] }}
+${{ seat['price'] }}"
+                href="{{ url_for('seats', action='assign', seat_id=seat['id']) }}">
+        <div class="seat open"></div>
+            </a>
+
+    {% endif %}
+
+{% endmacro %}
+
+
+
+
+{% macro displaySeats(seats, class) %}
+   <div class="row seats">
+        <div class="col-md-2">A</div>
+        <div class="col-md-2">B</div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2">C</div>
+        <div class="col-md-2">D</div>
+        <div class="col-md-2"></div>
+
+    </div>
+    <div class="row seats">
+        {% for seat in seats %}
+
+            {% if(seat['seatClass'] == class) %}
+                {% if(seat['aisle'] == 'C') %}
+                    <div class="col-sm-2 {{ class }}">
+                        <div class="seat text-center">{{ seat['row'] }}</div>
+                    </div>
+                    <div class="col-sm-2 {{ class }}">
+                {% else %}
+                    <div class="col-sm-2 {{ class }}">
+                {% endif %}
+
+            {{ displaySeat(seat) }}
+            {% if(seat['aisle'] == 'D') %}
+                </div>
+                <div class="row seats">
+            {% endif %}
+
+            </div>
+            {% endif %}
+        {% endfor %}
+        </div>
+{% endmacro %}

@@ -5,14 +5,15 @@
 
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <h1>Welcome</h1>
-            <div class="row">
-            </div>
-        </div>
+    <secion class="main">
+    <img class="cover" src="https://source.unsplash.com/collection/1401046/1600x800">
+
+    <div class="cover-text">
+        <h1>Welcome to <br> Sparrow Airlines</h1>
+        <h2>Your Adventure Awaits You</h2>
+        <a href="{{ url_for('seats')}}" class="btn btn-outline-light">Select Your Seats</a>
+
     </div>
-</div>
+    </secion>
 
 {%  endblock %}
